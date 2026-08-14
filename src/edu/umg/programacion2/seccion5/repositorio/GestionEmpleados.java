@@ -91,9 +91,14 @@ public class GestionEmpleados {
 	 * <li>Retorna 0.0 (no una excepción) si no hay empleados cargados.</li>
 	 * </ul>
 	 */
-	public double calcularNominaTotal() {
-		// TODO: completar
-		return 0.0;
+	public double calcularNominaTotal() 
+	{
+		double total= 0.0;
+		for (int i = 0; i < cantidad; i++)
+		{
+			total += empleados[i].calcularSalarioMensual();
+		}
+		return total;
 	}
 
 	/**
