@@ -139,7 +139,7 @@ public class GestionEmpleados {
 					  mayor = empleados [i];
 				  }
 		  }
-		return null;
+		return mayor;
 	}
 
 	/**
@@ -175,8 +175,47 @@ public class GestionEmpleados {
 	 * correcto.</li>
 	 * </ul>
 	 */
-	public void mostrarConteoPorTipo() {
-		// TODO: completar
+	public void mostrarConteoPorTipo() 
+	{
+		if (cantidad == 0) 
+			{
+				return;
+			}
+
+		String[] tipos = new String[cantidad];
+		int[] conteos = new int[cantidad];
+
+		int tiposEncontrados = 0;
+
+		for (int i = 0; i < cantidad; i++) 
+			{
+			String tipoActual = empleados[i].getTipo();
+			int posicion = -1;
+
+		for (int j = 0; j < tiposEncontrados; j++) 
+				{
+				if (tipos[j].equals(tipoActual)) 
+					{
+						posicion = j;
+						break;
+					}
+				}
+
+			if (posicion != -1) 
+			{
+				conteos[posicion]++;
+			} else
+					{
+					tipos[tiposEncontrados] = tipoActual;
+					conteos[tiposEncontrados] = 1;
+					tiposEncontrados++;
+					}
+			}
+
+		for (int i = 0; i < tiposEncontrados; i++) 
+			{
+				System.out.println(tipos[i] + ": " + conteos[i]);
+			}
 	}
 
 	/**
