@@ -231,7 +231,43 @@ public class GestionEmpleados {
 	 * salarios), pero acumulando en un arreglo de {@code double} en vez de
 	 * uno de {@code int}.
 	 */
-	public void mostrarNominaPorTipo() {
-		// TODO: completar (opcional)
-	}
+	public void mostrarNominaPorTipo() 
+	{
+		if (cantidad == 0) 
+		{
+			return;
+		}
+
+		String[] tipos = new String[cantidad];
+		double[] nominas = new double[cantidad];
+
+		int tiposEncontrados = 0;
+
+	    for (int i = 0; i < cantidad; i++) {
+
+	        String tipoActual = empleados[i].getTipo();
+	        double salarioActual = empleados[i].calcularSalarioMensual();
+
+	        int posicion = -1;
+
+	        for (int j = 0; j < tiposEncontrados; j++) {
+	            if (tipos[j].equals(tipoActual)) {
+	                posicion = j;
+	                break;
+	            }
+	        }
+
+	        if (posicion == -1) {
+	            tipos[tiposEncontrados] = tipoActual;
+	            nominas[tiposEncontrados] = salarioActual;
+	            tiposEncontrados++;
+	        } else {
+	            nominas[posicion] += salarioActual;
+	        }
+	    }
+
+	    for (int i = 0; i < tiposEncontrados; i++) {
+	        System.out.printf("%s: Q%.2f%n", tipos[i], nominas[i]);
+	    }
+}
 }
